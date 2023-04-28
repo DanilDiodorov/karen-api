@@ -1,0 +1,20 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js",
+        "dev": "concurrently \"nodemon index.js\" \"cd ../client && npm start\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^8.0.1",
+        "dotenv": "^16.0.3",
+        "nodemon": "^2.0.22",
+        "openai": "^3.2.1",
+        "socket.io": "^4.6.1"
+    }
+}
