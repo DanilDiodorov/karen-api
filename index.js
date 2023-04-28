@@ -137,28 +137,33 @@ const send = async ({ id, stream, messages, mid, system }) => {
                             removeRoom(mid)
                             return
                         } else {
-                            const parsed = JSON.parse(message)
-                            if (
-                                parsed.choices[0].delta.content !== undefined &&
-                                checkRoom(mid, id)
-                            ) {
-                                if (isFirst) {
-                                    io.emit('message', {
-                                        content:
-                                            parsed.choices[0].delta.content,
-                                        type: 'start',
-                                        id,
-                                    })
-                                    isFirst = false
-                                } else {
-                                    io.emit('message', {
-                                        content:
-                                            parsed.choices[0].delta.content,
-                                        type: 'middle',
-                                        id,
-                                    })
+                            try {
+                                const parsed = JSON.parse(message)
+                                if (
+                                    parsed.choices[0].delta.content !==
+                                        undefined &&
+                                    checkRoom(mid, id)
+                                ) {
+                                    if (isFirst) {
+                                        io.emit('message', {
+                                            content:
+                                                parsed.choices[0].delta.content,
+                                            type: 'start',
+                                            id,
+                                        })
+                                        isFirst = false
+                                    } else {
+                                        io.emit('message', {
+                                            content:
+                                                parsed.choices[0].delta.content,
+                                            type: 'middle',
+                                            id,
+                                        })
+                                    }
+                                    fullRes += parsed.choices[0].delta.content
                                 }
-                                fullRes += parsed.choices[0].delta.content
+                            } catch (e) {
+                                console.log(e)
                             }
                         }
                     }
