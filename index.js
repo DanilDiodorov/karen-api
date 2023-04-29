@@ -119,6 +119,7 @@ const send = async ({ id, stream, messages, mid, system }) => {
         const response = await generateResponseStream(filtredMessages)
         let isFirst = true
         let fullRes = ''
+
         try {
             response.data.on('data', (data) => {
                 if (checkRoom(mid, id)) {
@@ -201,6 +202,6 @@ io.on('connection', (socket) => {
     })
 })
 
-server.listen(10000, () => {
+server.listen(10000, '192.168.0.106', () => {
     console.log('Server listening on port 10000')
 })
