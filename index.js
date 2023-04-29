@@ -202,6 +202,12 @@ io.on('connection', (socket) => {
     })
 })
 
-server.listen(10000, '192.168.0.106', () => {
-    console.log('Server listening on port 10000')
-})
+if (process.env.HOST) {
+    server.listen(10000, process.env.HOST, () => {
+        console.log('Server listening on port 10000')
+    })
+} else {
+    server.listen(10000, () => {
+        console.log('Server listening on port 10000')
+    })
+}
