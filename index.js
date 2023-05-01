@@ -167,9 +167,7 @@ const send = async ({ id, stream, messages, mid, system }) => {
                                     }
                                     fullRes += parsed.choices[0].delta.content
                                 }
-                            } catch (e) {
-                                console.log(e)
-                            }
+                            } catch {}
                         }
                     }
                 }
