@@ -3,6 +3,7 @@ const server = require('http').createServer()
 const io = require('socket.io')(server, {
     cors: {
         origin: '*',
+        maxHttpBufferSize: 1e8,
     },
 })
 require('dotenv').config()
@@ -21,13 +22,14 @@ const generateResponseStream = async (prompt) => {
             {
                 model: 'gpt-3.5-turbo',
                 messages: prompt,
-                temperature: 0,
+                temperature: 1,
                 stream: true,
             },
             { responseType: 'stream' }
         )
         return response
     } catch (e) {
+        console.log(e)
         return undefined
     }
 }
@@ -36,7 +38,7 @@ const generateResponse = async (prompt) => {
     try {
         const response = await openaiapi.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            temperature: 0,
+            temperature: 1,
             messages: prompt,
         })
         return response.data.choices[0].message.content
@@ -72,7 +74,9 @@ const checkRoom = (id, roomID) => {
 
 const resend = ({ id, stream, messages, mid, system }) => {
     if (checkRoom(mid, id)) {
-        send({ id, stream, messages, mid, system })
+        setTimeout(() => {
+            send({ id, stream, messages, mid, system })
+        }, 3000)
     }
 }
 
