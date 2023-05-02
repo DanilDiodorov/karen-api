@@ -29,7 +29,6 @@ const generateResponseStream = async (prompt) => {
         )
         return response
     } catch (e) {
-        console.log(e)
         return undefined
     }
 }
@@ -59,13 +58,13 @@ const checkRoom = (id, roomID) => {
         if (room.id === id && room.count < 20) {
             isFinded = true
         }
-        if (room.count >= 20) {
-            // io.emit('message', {
-            //     content:
-            //         'Извините, похоже произошел сбой на серверах openAI. Попробуйте еще раз.',
-            //     type: 'nonstream',
-            //     id: roomID,
-            // })
+        if (room.count >= 10) {
+            io.emit('message', {
+                content:
+                    'Извините, похоже произошел сбой на серверах openAI. Попробуйте еще раз.',
+                type: 'nonstream',
+                id: roomID,
+            })
             removeRoom(room.id)
         }
     })
