@@ -55,10 +55,10 @@ const removeRoom = (id) => {
 const checkRoom = (id, roomID) => {
     let isFinded = false
     rooms.forEach((room) => {
-        if (room.id === id && room.count < 20) {
+        if (room.id === id && room.count < 10) {
             isFinded = true
         }
-        if (room.id === id || room.count >= 10) {
+        if (room.id === id && room.count >= 10) {
             io.emit('message', {
                 content:
                     'Извините, похоже произошел сбой на серверах openAI. Попробуйте еще раз.',
