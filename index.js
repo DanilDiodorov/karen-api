@@ -58,14 +58,14 @@ const checkRoom = (id, roomID) => {
         if (room.id === id && room.count < 20) {
             isFinded = true
         }
-        if (room.count >= 10) {
+        if (room.id === id || room.count >= 10) {
             io.emit('message', {
                 content:
                     'Извините, похоже произошел сбой на серверах openAI. Попробуйте еще раз.',
                 type: 'nonstream',
                 id: roomID,
             })
-            removeRoom(room.id)
+            removeRoom(id)
         }
     })
     return isFinded
