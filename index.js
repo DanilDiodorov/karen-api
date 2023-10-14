@@ -7,12 +7,13 @@ const io = require('socket.io')(server, {
     },
 })
 require('dotenv').config()
+const HttpProxyAgent = require('http-proxy-agent')
 
 let rooms = []
 
 const openaiapi = new OpenAIApi(
     new Configuration({
-        base: 'https://api.proxyapi.ru/openai/v1',
+        httpAgent: new HttpProxyAgent('https://api.proxyapi.ru/openai/v1'),
         apiKey: process.env.OPENAI_API_KEY,
     })
 )
