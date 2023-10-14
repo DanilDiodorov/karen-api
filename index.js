@@ -7,7 +7,7 @@ const io = require('socket.io')(server, {
     },
 })
 require('dotenv').config()
-const HttpsProxyAgent = require('https-proxy-agent')
+const { HttpsProxyAgent } = require('https-proxy-agent')
 
 let rooms = []
 
