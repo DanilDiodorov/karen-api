@@ -15,7 +15,7 @@ const openaiapi = new OpenAIApi(
     new Configuration({
         // httpAgent: new HttpsProxyAgent('https://api.proxyapi.ru/openai/v1'),
         apiKey: process.env.OPENAI_API_KEY,
-        apiBaseUrl: 'https://api.proxyapi.ru/openai/v1',
+        basePath: 'https://api.proxyapi.ru/openai/v1',
     })
 )
 
