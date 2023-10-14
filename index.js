@@ -12,6 +12,7 @@ let rooms = []
 
 const openaiapi = new OpenAIApi(
     new Configuration({
+        base: 'https://api.proxyapi.ru/openai/v1',
         apiKey: process.env.OPENAI_API_KEY,
     })
 )
