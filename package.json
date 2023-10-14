@@ -14,6 +14,7 @@
         "concurrently": "^8.0.1",
         "dotenv": "^16.0.3",
         "http-proxy-agent": "^7.0.0",
+        "https-proxy-agent": "^7.0.2",
         "nodemon": "^2.0.22",
         "openai": "^3.2.1",
         "socket.io": "^4.6.1"
